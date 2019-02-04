@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "node",
         "esModuleInterop": true,
         "target": "es6",
         "noImplicitAny": true,
