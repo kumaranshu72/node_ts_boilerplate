@@ -1,6 +1,11 @@
-import express from 'express';
-const app = express();
+import app from './app';
 
-app.get('/', (req, res) => res.send('Hello World!'));
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000, () => console.log('Magic happens on port 3000!'));
+app.get('/', (req, res) => {
+  res.send('You api is working ');
+});
+
+app.listen(PORT, () => {
+    console.log('Magic Happens on port' + PORT);
+});

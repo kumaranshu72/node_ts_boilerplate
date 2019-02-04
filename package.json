@@ -6,8 +6,9 @@
   "scripts": {
     "lint": "./node_modules/.bin/tslint --project \".\"",
     "build": "babel src --out-dir lib --extensions \".ts,.tsx\"",
-    "serve": "npm run build && node lib/server.js",
-    "start": "nodemon build --exec node lib/server.js"
+    "serve": "npm run build && tsc && node lib/server.js",
+    "compile": "tsc && node lib/server.js",
+    "start": "nodemon -e ts --exec \"npm run build && npm run compile\""
   },
   "keywords": [],
   "author": "",
