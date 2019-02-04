@@ -8,9 +8,6 @@ const PORT = process.env.PORT || 3000;
 app_1.default.get('/', (req, res) => {
     res.send('You api is working ');
 });
-app_1.default.get('/hello', (req, res) => {
-    res.send('You api is working ');
-});
 app_1.default.listen(PORT, () => {
     console.log('Magic Happens on port' + PORT);
 });

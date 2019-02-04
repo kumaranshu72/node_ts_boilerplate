@@ -8,7 +8,8 @@
     "build": "babel src --out-dir lib --extensions \".ts,.tsx\"",
     "serve": "npm run build && tsc && node lib/server.js",
     "compile": "tsc && node lib/server.js",
-    "start": "nodemon -e ts --exec \"npm run build && npm run compile\""
+    "start": "nodemon -e ts --exec \"npm run build && npm run compile\"",
+    "test": "mocha --compilers ts:babel-register src/**/*.spec.ts"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,11 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.3.1",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-typescript": "^7.1.0",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "babel-register": "^6.26.0",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.9",
     "ts-node": "^8.0.2",
     "tslint": "^5.12.1",
