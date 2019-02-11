@@ -1,21 +1,28 @@
 import express from 'express';
 
+// Creates and configures an ExpressJS web server.
 class App {
 
-    public app: express.Application;
+  // ref to Express instance
+  public express: express.Application;
 
-    constructor() {
-        this.app = express();
-        this.config();
-    }
+  // Run configuration methods on the Express instance.
+  constructor() {
+    this.express = express();
+    this.routes();
+  }
 
-    private config(): void {
-        // support application/json type post data
-        //  this.app.use(bodyParser.json());
-        // support application/x-www-form-urlencoded post data
-        // this.app.use(bodyParser.urlencoded({ extended: false }));
-    }
+  private routes(): void {
+
+    const router = express.Router();
+    router.get('/', (req, res, next) => {
+      res.json({
+        message: 'Hello World!'
+      });
+    });
+    this.express.use('/', router);
+  }
 
 }
 
-export default new App().app;
+export default new App().express;
