@@ -7,7 +7,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose = require('mongoose');
+const mongoose_1 = require("mongoose");
 const config = __importStar(require("../config/config"));
-mongoose.connect(config.CONFIG.mongoUrl, { useNewUrlParser: true });
+mongoose_1.connect(config.CONFIG.mongoUrl, { useNewUrlParser: true });
 //# sourceMappingURL=db.js.map
