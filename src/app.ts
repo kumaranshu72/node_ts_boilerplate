@@ -1,51 +1,36 @@
 import express from 'express'
 
-const swaggerUi = require('swagger-ui-express')
-
-const app: express.Application = express()
-
 import * as bodyParser from 'body-parser'
 
-const expressSwagger = require('express-swagger-generator')(app)
+import { connect } from 'mongoose'
 
-const db = require('./db/db')
+import * as config from './config/config'
 
 import router from './routes/users'
 
-const options = {
-  swaggerDefinition: {
-    basePath: '/',
-    host: 'localhost:3000',
-    info: {
-      description: 'Node Ts Starter Code',
-      title: 'Node Ts Rest API',
-      version: '1.0.0',
-    },
-    produces: [
-      'application/json',
-    ],
-    schemes: ['http', 'https'],
-    securityDefinitions: {
-      JWT: {
-        description: '',
-        in: 'header',
-        name: 'Authorization',
-        type: 'apiKey',
-      },
-    },
-  },
-  basedir: __dirname, // app absolute path
-  files: ['./routes/*.js'], // Path to the API handle folder
+class App {
+
+  public app: express.Application
+
+  constructor() {
+      this.app = express()
+      this.config()
+      this.mountRoutes()
+  }
+
+  private config(): void {
+    // DB connection
+    connect(config.CONFIG.mongoUrl, {useNewUrlParser: true})
+    // support application/json type post data
+    this.app.use(bodyParser.json())
+    // support application/x-www-form-urlencoded post data
+    this.app.use(bodyParser.urlencoded({ extended: false }))
+  }
+
+  private mountRoutes(): void {
+    this.app.use(router)
+  }
+
 }
 
-expressSwagger(options)
-
-app.use(bodyParser.json())
-
-app.use(bodyParser.urlencoded({
-      extended: true,
-    }))
-
-app.use(router)
-
-export default app
+export default new App().app
