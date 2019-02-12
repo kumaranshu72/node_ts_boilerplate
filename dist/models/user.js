@@ -4,5 +4,5 @@ const mongoose_1 = require("mongoose");
 exports.UserSchema = new mongoose_1.Schema({
     name: String
 });
-exports.User = mongoose_1.model("User", exports.UserSchema);
+exports.User = mongoose_1.model('User', exports.UserSchema);
 //# sourceMappingURL=user.js.map

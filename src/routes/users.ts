@@ -4,7 +4,7 @@ import { userController } from '../controllers/user';
 const router: Router = Router();
 
 router.route('/users')
- /**
+  /**
    * This function comment is parsed by Anshu
    * @route POST /users
    * @group Add a user - Adding a new user
@@ -16,8 +16,9 @@ router.route('/users')
    */
     .post(userController.add)
     .get(userController.getAll);
-  router.route('/users/:user_id')
+router.route('/users/:user_id')
     .get(userController.getById)
-    .put(userController.update);
+    .put(userController.update)
+    .delete(userController.deleteById);
 
 export default router;
