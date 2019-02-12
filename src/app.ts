@@ -6,7 +6,7 @@ import { connect } from 'mongoose'
 
 import * as config from './config/config'
 
-import router from './routes/users'
+import router from './routes'
 
 class App {
 

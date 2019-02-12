@@ -14,7 +14,7 @@ const express_1 = __importDefault(require("express"));
 const bodyParser = __importStar(require("body-parser"));
 const mongoose_1 = require("mongoose");
 const config = __importStar(require("./config/config"));
-const users_1 = __importDefault(require("./routes/users"));
+const routes_1 = __importDefault(require("./routes"));
 class App {
     constructor() {
         this.app = express_1.default();
@@ -30,7 +30,7 @@ class App {
         this.app.use(bodyParser.urlencoded({ extended: false }));
     }
     mountRoutes() {
-        this.app.use(users_1.default);
+        this.app.use(routes_1.default);
     }
 }
 exports.default = new App().app;
