@@ -1,4 +1,4 @@
 const mongoose = require('mongoose')
-const {mongoUrl} = require('../config/config')
+import * as config from '../config/config'
 
-mongoose.connect(mongoUrl, {useNewUrlParser: true})
+mongoose.connect(config.CONFIG.mongoUrl, {useNewUrlParser: true})
