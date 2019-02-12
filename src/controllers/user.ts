@@ -15,10 +15,10 @@ export const userController = {
   },
   deleteById: (req: Request, res: Response) => {
     User.remove({ _id: req.params.user_id}, (err) => {
-      if (err) {
+    if (err) {
         res.status(500).send(err)
       }
-      res.status(200).json({ message: 'Successfully deleted' })
+    res.status(200).json({ message: 'Successfully deleted' })
     })
   },
   getAll: (req: Request, res: Response) => {

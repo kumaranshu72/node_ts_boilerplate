@@ -4,13 +4,7 @@ const swaggerUi = require('swagger-ui-express')
 
 const app: express.Application = express()
 
-import * as bodyParser from "body-parser"
-
-app.use(bodyParser.json())
-
-app.use(bodyParser.urlencoded({
-      extended: true
-    }))
+import * as bodyParser from 'body-parser'
 
 const expressSwagger = require('express-swagger-generator')(app)
 
@@ -20,23 +14,23 @@ import router from './routes/users'
 
 const options = {
   swaggerDefinition: {
+    basePath: '/',
+    host: 'localhost:3000',
     info: {
       description: 'Node Ts Starter Code',
       title: 'Node Ts Rest API',
       version: '1.0.0',
     },
-    host: 'localhost:3000',
-    basePath: '/api/v1',
     produces: [
       'application/json',
     ],
     schemes: ['http', 'https'],
     securityDefinitions: {
       JWT: {
-        type: 'apiKey',
+        description: '',
         in: 'header',
         name: 'Authorization',
-        description: '',
+        type: 'apiKey',
       },
     },
   },
@@ -45,6 +39,12 @@ const options = {
 }
 
 expressSwagger(options)
+
+app.use(bodyParser.json())
+
+app.use(bodyParser.urlencoded({
+      extended: true,
+    }))
 
 app.use(router)
 
