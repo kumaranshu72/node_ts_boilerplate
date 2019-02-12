@@ -15,6 +15,13 @@ router.route('/users')
    * @return {object} 500 - Internal Server Error
    */
     .post(userController.add)
+  /**
+   * This function comment is parsed by Anshu
+   * @route GET /users
+   * @group Get all user - Retrieve a list of users
+   * @produces application/json
+   * @consumes application/json
+   */
     .get(userController.getAll)
 router.route('/users/:user_id')
     .get(userController.getById)

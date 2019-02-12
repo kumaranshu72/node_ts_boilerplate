@@ -5,9 +5,9 @@ exports.CONFIG = {
 };
 exports.options = {
     basedir: __dirname,
-    files: ['../routes/*.js'],
+    files: ['../routes/api/v1/*.js'],
     swaggerDefinition: {
-        basePath: '/',
+        basePath: '/api/v1',
         host: 'localhost:3000',
         info: {
             description: 'Node Ts Starter Code',

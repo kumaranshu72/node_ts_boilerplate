@@ -4,9 +4,9 @@ export const CONFIG = {
 
 export const options = {
   basedir: __dirname, // app absolute path
-  files: ['../routes/*.js'], // Path to the API handle folder
+  files: ['../routes/api/v1/*.js'], // Path to the API handle folder
   swaggerDefinition: {
-    basePath: '/',
+    basePath: '/api/v1',
     host: 'localhost:3000',
     info: {
       description: 'Node Ts Starter Code',
