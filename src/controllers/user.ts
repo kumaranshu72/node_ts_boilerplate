@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { User } from '../models/user'
+import { User } from '../models'
 
 export const userController = {
   add: (req: Request, res: Response) => {

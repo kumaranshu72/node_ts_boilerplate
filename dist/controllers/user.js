@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_1 = require("../models/user");
+const models_1 = require("../models");
 exports.userController = {
     add: (req, res) => {
-        const user = new user_1.User();
+        const user = new models_1.User();
         user.name = req.body.name;
         user.save((err) => {
             if (err) {
@@ -13,7 +13,7 @@ exports.userController = {
         });
     },
     deleteById: (req, res) => {
-        user_1.User.remove({ _id: req.params.user_id }, (err) => {
+        models_1.User.remove({ _id: req.params.user_id }, (err) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -21,7 +21,7 @@ exports.userController = {
         });
     },
     getAll: (req, res) => {
-        user_1.User.find((err, users) => {
+        models_1.User.find((err, users) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -29,7 +29,7 @@ exports.userController = {
         });
     },
     getById: (req, res) => {
-        user_1.User.findById(req.params.user_id, (err, user) => {
+        models_1.User.findById(req.params.user_id, (err, user) => {
             if (err) {
                 res.status(500).send(err);
             }
@@ -37,7 +37,7 @@ exports.userController = {
         });
     },
     update: (req, res) => {
-        user_1.User.findById(req.params.user_id, (err, user) => {
+        models_1.User.findById(req.params.user_id, (err, user) => {
             if (err) {
                 res.send(err);
             }

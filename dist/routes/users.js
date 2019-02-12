@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-const user_1 = require("../controllers/user");
+const controllers_1 = require("../controllers");
 const router = express_1.Router();
 router.route('/users')
     /**
@@ -14,11 +14,11 @@ router.route('/users')
      * @returns {object} 200 - Newly created user
      * @return {object} 500 - Internal Server Error
      */
-    .post(user_1.userController.add)
-    .get(user_1.userController.getAll);
+    .post(controllers_1.userController.add)
+    .get(controllers_1.userController.getAll);
 router.route('/users/:user_id')
-    .get(user_1.userController.getById)
-    .put(user_1.userController.update)
-    .delete(user_1.userController.deleteById);
+    .get(controllers_1.userController.getById)
+    .put(controllers_1.userController.update)
+    .delete(controllers_1.userController.deleteById);
 exports.default = router;
 //# sourceMappingURL=users.js.map
