@@ -1,28 +1,43 @@
 import express from 'express';
 
-// Creates and configures an ExpressJS web server.
-class App {
+const swaggerUi = require('swagger-ui-express');
 
-  // ref to Express instance
-  public express: express.Application;
+const app: express.Application = express();
 
-  // Run configuration methods on the Express instance.
-  constructor() {
-    this.express = express();
-    this.routes();
-  }
+const expressSwagger = require('express-swagger-generator')(app)
 
-  private routes(): void {
+const db = require('./db/db');
 
-    const router = express.Router();
-    router.get('/', (req, res, next) => {
-      res.json({
-        message: 'Hello World!'
-      });
-    });
-    this.express.use('/', router);
-  }
+import router from './routes/users';
 
-}
+const options = {
+  swaggerDefinition: {
+    info: {
+      description: 'Node JS Starter Code',
+      title: 'Node Js Rest API',
+      version: '1.0.0',
+    },
+    host: 'localhost:3000',
+    basePath: '/api/v1',
+    produces: [
+      'application/json',
+    ],
+    schemes: ['http', 'https'],
+    securityDefinitions: {
+      JWT: {
+        type: 'apiKey',
+        in: 'header',
+        name: 'Authorization',
+        description: '',
+      },
+    },
+  },
+  basedir: __dirname, // app absolute path
+  files: ['./app/routes/*.js'], // Path to the API handle folder
+};
 
-export default new App().express;
+expressSwagger(options);
+
+app.use(router);
+
+export default app;

@@ -22,13 +22,17 @@
     "@babel/preset-typescript": "^7.1.0",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
+    "@types/mongodb": "^3.1.19",
+    "@types/mongoose": "^5.3.12",
     "@types/supertest": "^2.0.7",
     "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
     "chai": "^4.2.0",
+    "express-swagger-generator": "^1.1.11",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.9",
     "supertest": "^3.4.2",
+    "swagger-ui-express": "^4.0.2",
     "ts-node": "^8.0.2",
     "tslint": "^5.12.1",
     "typescript": "^3.3.1"
@@ -36,8 +40,11 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/register": "^7.0.0",
+    "@types/body-parser": "^1.17.0",
     "@types/express": "^4.16.1",
     "babel-register-ts": "^7.0.0",
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.11"
   }
 }
