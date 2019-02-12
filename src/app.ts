@@ -4,6 +4,14 @@ const swaggerUi = require('swagger-ui-express');
 
 const app: express.Application = express();
 
+import * as bodyParser from "body-parser";
+
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({
+      extended: true
+    }));
+
 const expressSwagger = require('express-swagger-generator')(app)
 
 const db = require('./db/db');
@@ -13,8 +21,8 @@ import router from './routes/users';
 const options = {
   swaggerDefinition: {
     info: {
-      description: 'Node JS Starter Code',
-      title: 'Node Js Rest API',
+      description: 'Node Ts Starter Code',
+      title: 'Node Ts Rest API',
       version: '1.0.0',
     },
     host: 'localhost:3000',
@@ -33,7 +41,7 @@ const options = {
     },
   },
   basedir: __dirname, // app absolute path
-  files: ['./app/routes/*.js'], // Path to the API handle folder
+  files: ['./routes/*.js'], // Path to the API handle folder
 };
 
 expressSwagger(options);
