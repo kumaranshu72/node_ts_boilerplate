@@ -1,22 +1,22 @@
-import express from 'express';
+import express from 'express'
 
-const swaggerUi = require('swagger-ui-express');
+const swaggerUi = require('swagger-ui-express')
 
-const app: express.Application = express();
+const app: express.Application = express()
 
-import * as bodyParser from "body-parser";
+import * as bodyParser from "body-parser"
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 
 app.use(bodyParser.urlencoded({
       extended: true
-    }));
+    }))
 
 const expressSwagger = require('express-swagger-generator')(app)
 
-const db = require('./db/db');
+const db = require('./db/db')
 
-import router from './routes/users';
+import router from './routes/users'
 
 const options = {
   swaggerDefinition: {
@@ -42,10 +42,10 @@ const options = {
   },
   basedir: __dirname, // app absolute path
   files: ['./routes/*.js'], // Path to the API handle folder
-};
+}
 
-expressSwagger(options);
+expressSwagger(options)
 
-app.use(router);
+app.use(router)
 
-export default app;
+export default app

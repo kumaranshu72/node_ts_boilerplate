@@ -1,7 +1,7 @@
-import { Router } from 'express';
-import { userController } from '../controllers/user';
+import { Router } from 'express'
+import { userController } from '../controllers/user'
 
-const router: Router = Router();
+const router: Router = Router()
 
 router.route('/users')
   /**
@@ -15,10 +15,10 @@ router.route('/users')
    * @return {object} 500 - Internal Server Error
    */
     .post(userController.add)
-    .get(userController.getAll);
+    .get(userController.getAll)
 router.route('/users/:user_id')
     .get(userController.getById)
     .put(userController.update)
-    .delete(userController.deleteById);
+    .delete(userController.deleteById)
 
-export default router;
+export default router
