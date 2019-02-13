@@ -1,5 +1,5 @@
 export const CONFIG = {
-  mongoUrl: 'mongodb://mongo/myapp',
+  mongoUrl: 'mongodb://localhost:27017/myapp',
 }
 
 export const options = {

@@ -9,7 +9,21 @@
     "serve": "npm run build && tsc && node lib/server.js",
     "compile": "tsc && node lib/server.js",
     "start": "nodemon -e ts --exec \"npm run build && npm run compile\"",
-    "test": "mocha --compilers babel-register-ts --require babel-polyfill test/**/*.spec.ts"
+    "test": "mocha --exit --compilers babel-register-ts --require babel-polyfill test/**/*.spec.ts",
+    "test-with-coverage": "nyc --reporter=html --reporter=text mocha --exit --compilers babel-register-ts --require babel-polyfill test/**/*.spec.ts"
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "all": true
   },
   "keywords": [],
   "author": "",
@@ -31,6 +45,8 @@
     "express-swagger-generator": "^1.1.11",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.9",
+    "nyc": "^13.2.0",
+    "source-map-support": "^0.5.10",
     "supertest": "^3.4.2",
     "swagger-ui-express": "^4.0.2",
     "ts-node": "^8.0.2",
