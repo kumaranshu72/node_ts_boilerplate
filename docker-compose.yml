@@ -8,8 +8,13 @@ services:
     volumes:
      - ./:/app
     restart: always
+    environment:
+      - REDIS_URL=redis
+      - REDIS_PORT=6379
+      - MONGO_URL=mongodb://mongo/myapp
     links:
       - mongo
+      - redis
   mongo:
     container_name: mongo
     image: mongo
@@ -17,3 +22,6 @@ services:
       - ./data:/data/db
     ports:
       - "27017:27017"
+  redis:
+    container_name: redis
+    image: redis
