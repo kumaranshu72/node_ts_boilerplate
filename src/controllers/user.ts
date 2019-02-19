@@ -25,7 +25,7 @@ export const userController = {
     })
   },
   getAll: (req: Request, res: Response) => {
-    RedisConnection.get('hello', (err: any, result: any) => {
+    RedisConnection.get('hello').then( (result: string) => {
       res.send(result)
     })
     /*User.find( (err, users) => {
