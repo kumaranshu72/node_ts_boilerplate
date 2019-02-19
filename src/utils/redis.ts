@@ -13,17 +13,16 @@ class Redis {
     this.connection = redis.createClient(this.options)
   }
 
-  public get(key: string) {
-    return this.connection.get(key)
+  public get(key: string, callback: any) {
+    return this.connection.get(key, callback)
   }
 
   public set(key: string, value: string, ttl: number) {
     if (ttl === 0) {
       this.connection.set(key, value)
+      return
     }
-    else {
-      this.connection.setex(key, ttl, value)
-    }
+    this.connection.setex(key, ttl, value)
   }
 }
 
