@@ -1,5 +1,7 @@
 export const CONFIG = {
   mongoUrl: 'mongodb://localhost:27017/myapp',
+  redisPort: 6379,
+  redisUrl: 'localhost',
 }
 
 export const options = {
