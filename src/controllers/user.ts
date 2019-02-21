@@ -1,8 +1,16 @@
 import { Request, Response } from 'express'
 
+const circuitBreaker = require('opossum')
+
 import { User } from '../models'
 
 import { RedisConnection } from '../utils'
+
+import request from 'request-promise-native'
+
+const makeRequest = (id: any) => request.get({
+  uri: 'http://localhost/users',
+})
 
 export const userController = {
   add: (req: Request, res: Response) => {
@@ -25,9 +33,27 @@ export const userController = {
     })
   },
   getAll: (req: Request, res: Response) => {
-    RedisConnection.get('hello').then( (result: string) => {
+    /*RedisConnection.get('hello').then( (result: string) => {
       res.send(result)
+    })*/
+    const  circuitBreakerOptions  = {
+      errorThresholdPercentage :  50 ,
+      timeout :  1000 ,
+      resetTimeout :  5000
+    }
+
+    const  circuit  =  circuitBreaker(makeRequest, circuitBreakerOptions)
+    circuit.fallback((error: any) => {
+      console.log('Fallback')
+      return 'Fallback'
     })
+
+    circuit.fire().then ( (result: any)  => {
+        res.send (result)
+    }).catch ( (err: any)  => {
+        res.send (err.message)
+    })
+
     /*User.find( (err, users) => {
       if (err) {
         res.status(500).send(err)
