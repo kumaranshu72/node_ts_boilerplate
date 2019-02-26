@@ -4,7 +4,7 @@ const circuitBreaker = require('opossum')
 
 import { User } from '../models'
 
-import { RedisConnection } from '../utils'
+import { gelf, RedisConnection } from '../utils'
 
 import request from 'request-promise-native'
 
@@ -41,6 +41,8 @@ export const userController = {
       timeout :  1000 ,
       resetTimeout :  5000
     }
+    // greylog logger
+    gelf.emit('gelf.log', 'hello World')
 
     const  circuit  =  circuitBreaker(makeRequest, circuitBreakerOptions)
     circuit.fallback((error: any) => {

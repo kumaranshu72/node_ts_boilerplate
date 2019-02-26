@@ -64,6 +64,7 @@
     "babel-register-ts": "^7.0.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "gelf": "^2.0.1",
     "mongoose": "^5.4.11",
     "opossum": "^1.10.0",
     "redis": "^2.8.0",
