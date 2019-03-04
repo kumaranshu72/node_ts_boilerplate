@@ -61,6 +61,7 @@
     "@types/opossum": "^1.10.0",
     "@types/redis": "^2.8.10",
     "@types/request-promise-native": "^1.0.15",
+    "axios": "^0.18.0",
     "babel-register-ts": "^7.0.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
@@ -68,8 +69,6 @@
     "mongoose": "^5.4.11",
     "opossum": "^1.10.0",
     "redis": "^2.8.0",
-    "request": "^2.88.0",
-    "request-promise-native": "^1.0.7",
     "util": "^0.11.1"
   }
 }

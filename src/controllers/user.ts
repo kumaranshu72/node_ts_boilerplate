@@ -6,11 +6,7 @@ import { User } from '../models'
 
 import { gelf, RedisConnection } from '../utils'
 
-import request from 'request-promise-native'
-
-const makeRequest = (id: any) => request.get({
-  uri: 'http://localhost/users',
-})
+const axios = require('axios')
 
 export const userController = {
   add: (req: Request, res: Response) => {
@@ -38,13 +34,13 @@ export const userController = {
     })*/
     const  circuitBreakerOptions  = {
       errorThresholdPercentage :  50 ,
-      timeout :  1000 ,
-      resetTimeout :  5000
+      resetTimeout :  5000,
+      timeout :  1000,
     }
     // greylog logger
     gelf.emit('gelf.log', 'hello World')
 
-    const  circuit  =  circuitBreaker(makeRequest, circuitBreakerOptions)
+    const  circuit  =  circuitBreaker( axios.get('http://localhost/users'), circuitBreakerOptions)
     circuit.fallback((error: any) => {
       console.log('Fallback')
       return 'Fallback'

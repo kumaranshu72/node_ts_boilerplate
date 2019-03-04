@@ -6,7 +6,7 @@ export const CONFIG = {
   graymaxChunkSizeWan: 1420,
   mongoUrl: process.env.MONGO_URL || 'mongodb://mongo/myapp',
   redisPort: parseInt(process.env.REDIS_PORT) || 6379,
-  redisUrl: process.env.REDIS_URL || 'redis'
+  redisUrl: process.env.REDIS_URL || 'redis',
 }
 
 export const options = {
