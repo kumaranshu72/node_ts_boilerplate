@@ -14,8 +14,8 @@ export const RespondError = (req: Request, res: Response, status: number, errorT
     })
 }
 
-export const RespondSucess = (req: Request, res: Response, status: number, payload: string,
-                              CacheType: string, expireDate: string ) => {
+export const RespondSuccess = (req: Request, res: Response, status: number, payload: string,
+                               CacheType: string, expireDate: string ) => {
     if (CacheType === 'no-cache') {
         res.set({
             'Cache-Control': 'no-cache',
@@ -31,5 +31,5 @@ export const RespondSucess = (req: Request, res: Response, status: number, paylo
           })
     }
     res.status(status)
-    res.json(payload)
+    res.send(payload)
 }
