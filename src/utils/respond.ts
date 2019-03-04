@@ -1,28 +1,35 @@
 import {  Request, Response } from 'express'
 
-export const RespondError = (req: Request, res: Response, status: number, error_type: string, message: string) => {
+export const RespondError = (req: Request, res: Response, status: number, errorType: string, message: string) => {
     res.set({
-        'Content-Type': 'appliation/json',
         'Cache-Control': 'no-cache',
+        'Content-Type': 'appliation/json',
         'Correlation-Id': req.headers['x-correlation-id']
       })
     res.status(status)
     res.json({
         status: status,
-        error_type: error_type,
+        error_type: errorType,
         message: message
     })
 }
 
-// TODO change response success class 
-export const RespondSucess = (req: Request, res: Response, status: number, payload: string ) => {
-    res.set({
-        'Content-Type': 'appliation/json',
-        'Cache-Control': 'no-cache',
-        'Correlation-Id': req.headers['x-correlation-id']
-      })
+export const RespondSucess = (req: Request, res: Response, status: number, payload: string,
+                              CacheType: string, expireDate: string ) => {
+    if (CacheType === 'no-cache') {
+        res.set({
+            'Cache-Control': 'no-cache',
+            'Content-Type': 'appliation/json',
+            'Correlation-Id': req.headers['x-correlation-id']
+          })
+    } else {
+        res.set({
+            'Cache-Control': CacheType,
+            'Content-Type': 'appliation/json',
+            'Correlation-Id': req.headers['x-correlation-id'],
+            'Expires': expireDate,
+          })
+    }
     res.status(status)
-    res.json({
-        status: status
-    })
+    res.json(payload)
 }

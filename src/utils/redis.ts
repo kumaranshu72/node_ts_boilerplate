@@ -25,7 +25,6 @@ class Redis {
   public get = (key: string) => {
     return this.getAsync(key)
   }
-
   public set = (key: string, value: string, ttl: number) => {
     return this.setAsync(key, ttl, value)
   }
@@ -34,6 +33,9 @@ class Redis {
   }
   public hget = (key: string, key1: string) => {
     return this.hgetAsync(key, key1)
+  }
+  public setExpire = (key: string, ttl: number) => {
+    this.connection.expire(key, ttl)
   }
 }
 
