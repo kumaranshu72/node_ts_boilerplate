@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { gelf, RedisConnection, RespondError } from '../utils'
+import { RedisConnection, RespondError } from '../utils'
 
 export const validateForwardedHeader = (req: Request, res: Response, next: NextFunction) => {
     if (req.headers['x-forwarded-for'] !== undefined && req.headers['x-forwarded-for'] !== '') {
@@ -11,8 +11,15 @@ export const validateForwardedHeader = (req: Request, res: Response, next: NextF
 
 export const validateCorrelationId =  (req: Request, res: Response, next: NextFunction) => {
     if (req.headers['x-correlation-id'] !== undefined && req.headers['x-correlation-id'] !== '') {
-        console.log(req.headers['x-correlation-id'])
-        next()
+        const coorelationId = req.headers['x-correlation-id']
+        RedisConnection.hget('correlationId', String(coorelationId)).then((result: any) => {
+            if (result === null) {
+                RedisConnection.hset('correlationId', String(coorelationId), '1')
+                next()
+            } else {
+                RespondError(req, res, 422, 'Unprocessable Entity', 'Duplicate Correlation-Id')
+            }
+          })
     } else {
         RespondError(req, res, 422, 'Unprocessable Entity', 'x-correlation-id header is missing')
     }

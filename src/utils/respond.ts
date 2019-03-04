@@ -13,3 +13,16 @@ export const RespondError = (req: Request, res: Response, status: number, error_
         message: message
     })
 }
+
+// TODO change response success class 
+export const RespondSucess = (req: Request, res: Response, status: number, payload: string ) => {
+    res.set({
+        'Content-Type': 'appliation/json',
+        'Cache-Control': 'no-cache',
+        'Correlation-Id': req.headers['x-correlation-id']
+      })
+    res.status(status)
+    res.json({
+        status: status
+    })
+}

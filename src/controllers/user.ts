@@ -11,6 +11,7 @@ const axios = require('axios')
 export const userController = {
   add: (req: Request, res: Response) => {
     // RedisConnection.set('hello', 'hello Anshu', 100000)
+    // RedisConnection.hset('correlationId', '1234', '1')
     const user = new User()
     user.name = req.body.name
     user.save((err) => {
@@ -31,6 +32,9 @@ export const userController = {
   getAll: (req: Request, res: Response) => {
     /*RedisConnection.get('hello').then( (result: string) => {
       res.send(result)
+    })*/
+    /*RedisConnection.hget('correlationId', '12345').then((result: any) => {
+      console.log(result)
     })*/
     const  circuitBreakerOptions  = {
       errorThresholdPercentage :  50 ,
