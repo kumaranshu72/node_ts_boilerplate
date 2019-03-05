@@ -1,23 +1,23 @@
 export const CONFIG = {
   grayconnection: 'wan',
   graylogHOST: process.env.GRAYLOGHOST || 'graylog',
-  graylogPORT: parseInt(process.env.GRAYLOGPORT) || 12201,
+  graylogPORT: parseInt(process.env.GRAYLOGPORT, 10) || 12201,
   graymaxChunkSizeLan: 8154,
   graymaxChunkSizeWan: 1420,
   mongoUrl: process.env.MONGO_URL || 'mongodb://mongo/myapp',
-  redisPort: parseInt(process.env.REDIS_PORT) || 6379,
+  redisPort: parseInt(process.env.REDIS_PORT, 10) || 6379,
   redisUrl: process.env.REDIS_URL || 'redis',
 }
 
 export const options = {
-  basedir: __dirname, // app absolute path
-  files: ['../routes/api/v1/*.js'], // Path to the API handle folder
+  // Path to the API docs
+  apis: ['**/*.ts'],
   swaggerDefinition: {
     basePath: '/api/v1',
     host: 'localhost:3000',
     info: {
-      description: 'Node Ts Starter Code',
-      title: 'Node Ts Rest API',
+      description: 'documentation for niyo recharge api',
+      title: 'Niyo Recharge API Documentation',
       version: '1.0.0',
     },
     produces: [
@@ -33,4 +33,5 @@ export const options = {
       },
     },
   },
+
 }

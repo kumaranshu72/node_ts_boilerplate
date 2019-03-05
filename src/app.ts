@@ -8,7 +8,7 @@ import * as config from './config/config'
 
 import { RedisConnection } from './utils'
 
-const cron = require("node-cron")
+const cron = require('node-cron')
 
 import router from './routes'
 
