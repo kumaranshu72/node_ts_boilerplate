@@ -35,7 +35,7 @@ router.route('/health')
        *         schema:
        *           type: string
        *         required: true
-       *         description: application/gzip is allowed;
+       *         description: application/gzip is allowed
        *       - in: header
        *         name: Accept
        *         schema:
