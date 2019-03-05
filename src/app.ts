@@ -5,6 +5,11 @@ import * as bodyParser from 'body-parser'
 import { connect } from 'mongoose'
 
 import * as config from './config/config'
+
+import { RedisConnection } from './utils'
+
+const cron = require("node-cron")
+
 import router from './routes'
 
 class App {
@@ -15,6 +20,10 @@ class App {
       this.app = express()
       this.config()
       this.mountRoutes()
+      // invalidate coorelation Id's everyday
+      cron.schedule('0 0 * * *', () => {
+        RedisConnection.setExpire('correlationId', 0)
+      })
   }
 
   private config(): void {

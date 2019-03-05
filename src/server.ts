@@ -1,6 +1,9 @@
 import app from './app'
+
 import * as config from './config/config'
+
 const swaggerUi = require('swagger-ui-express')
+
 const expressSwagger = require('express-swagger-generator')(app)
 
 expressSwagger(config.options)

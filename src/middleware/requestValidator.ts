@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
+
 import { RedisConnection, RespondError } from '../utils'
 
 export const validateForwardedHeader = (req: Request, res: Response, next: NextFunction) => {
