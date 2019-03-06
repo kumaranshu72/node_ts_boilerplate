@@ -2,6 +2,8 @@ import { NextFunction, Request, Response } from 'express'
 
 import { RedisConnection, RespondError } from '../utils'
 
+import { redisKeys } from '../config'
+
 export const validateForwardedHeader = (req: Request, res: Response, next: NextFunction) => {
     if (req.headers['x-forwarded-for'] !== undefined && req.headers['x-forwarded-for'] !== '') {
         next()
@@ -13,9 +15,9 @@ export const validateForwardedHeader = (req: Request, res: Response, next: NextF
 export const validateCorrelationId =  (req: Request, res: Response, next: NextFunction) => {
     if (req.headers['x-correlation-id'] !== undefined && req.headers['x-correlation-id'] !== '') {
         const coorelationId = req.headers['x-correlation-id']
-        RedisConnection.hget('correlationId', String(coorelationId)).then((result: any) => {
+        RedisConnection.hget(redisKeys.coorelationId, String(coorelationId)).then((result: any) => {
             if (result === null) {
-                RedisConnection.hset('correlationId', String(coorelationId), '1')
+                RedisConnection.hset(redisKeys.coorelationId, String(coorelationId), '1')
                 // TODO Expire hash everyday
                 next()
             } else {

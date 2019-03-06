@@ -1,4 +1,5 @@
 const Gelf = require('gelf')
+
 import { grayLogConfig } from '../config'
 
 export const gelf: any = new Gelf({
