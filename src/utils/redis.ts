@@ -1,6 +1,8 @@
 import redis from 'redis'
+
 import { promisify } from 'util'
-import * as config from '../config/config'
+
+import { redisConfig } from '../config'
 
 class Redis {
   private connection: redis.RedisClient
@@ -12,8 +14,8 @@ class Redis {
 
   constructor() {
     this.options = {
-      host: config.CONFIG.redisUrl,
-      port: config.CONFIG.redisPort
+      host: redisConfig.redisUrl,
+      port: redisConfig.redisPort,
     }
     this.connection = redis.createClient(this.options)
     this.getAsync = promisify(this.connection.get).bind(this.connection)

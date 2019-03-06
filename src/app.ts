@@ -4,7 +4,7 @@ import * as bodyParser from 'body-parser'
 
 import { connect } from 'mongoose'
 
-import * as config from './config/config'
+import { mongoConfig } from './config'
 
 import { RedisConnection } from './utils'
 
@@ -28,7 +28,7 @@ class App {
 
   private config(): void {
     // DB connection
-    connect(config.CONFIG.mongoUrl, {useNewUrlParser: true})
+    connect(mongoConfig.mongoUrl, {useNewUrlParser: true})
     // support application/json type post data
     this.app.use(bodyParser.json())
     // support application/x-www-form-urlencoded post data
