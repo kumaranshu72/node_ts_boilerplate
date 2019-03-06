@@ -18,7 +18,6 @@ export const validateCorrelationId =  (req: Request, res: Response, next: NextFu
         RedisConnection.hget(redisKeys.coorelationId, String(coorelationId)).then((result: any) => {
             if (result === null) {
                 RedisConnection.hset(redisKeys.coorelationId, String(coorelationId), '1')
-                // TODO Expire hash everyday
                 next()
             } else {
                 RespondError(req, res, 422, 'Unprocessable Entity', 'Duplicate Correlation-Id')

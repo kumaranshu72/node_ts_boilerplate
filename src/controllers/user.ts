@@ -4,7 +4,7 @@ const circuitBreaker = require('opossum')
 
 import { User } from '../models'
 
-import { gelf, RedisConnection } from '../utils'
+import { gelf, logType, RedisConnection } from '../utils'
 
 const axios = require('axios')
 
@@ -42,7 +42,7 @@ export const userController = {
       timeout :  1000,
     }
     // greylog logger
-    gelf.emit('gelf.log', 'hello World')
+    gelf.emit(logType, 'hello World')
 
     const  circuit  =  circuitBreaker( axios.get('http://localhost/users'), circuitBreakerOptions)
     circuit.fallback((error: any) => {

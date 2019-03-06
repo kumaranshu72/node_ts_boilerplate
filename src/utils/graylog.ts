@@ -9,3 +9,5 @@ export const gelf: any = new Gelf({
   maxChunkSizeLan: grayLogConfig.graymaxChunkSizeLan,
   maxChunkSizeWan: grayLogConfig.graymaxChunkSizeWan,
 })
+
+export const logType = 'gelf'
