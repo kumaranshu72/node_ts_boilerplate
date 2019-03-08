@@ -19,7 +19,11 @@
       ".tsx"
     ],
     "exclude": [
-      "**/*.d.ts"
+      "**/*.d.ts",
+      "coverage",
+      "dist",
+      "lib",
+      "test"
     ],
     "reporter": [
       "html"

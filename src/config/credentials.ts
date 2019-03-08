@@ -1,10 +1,10 @@
 export const mongoConfig = {
-    mongoUrl: process.env.MONGO_URL,
+    mongoUrl: process.env.MONGO_URL || 'mongodb://root:root@localhost/myapp?authSource=admin',
 }
 
 export const redisConfig = {
   redisPort: parseInt(process.env.REDIS_PORT, 10) || 6379,
-  redisUrl: process.env.REDIS_URL || 'redis',
+  redisUrl: process.env.REDIS_URL || 'localhost',
 }
 
 export const grayLogConfig = {
