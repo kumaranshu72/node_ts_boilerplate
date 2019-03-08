@@ -4,7 +4,16 @@ import { healthCheck } from '../../../controllers'
 const router: Router = Router()
 
 router.route('/health')
-
+      /**
+       * @swagger
+       * definition:
+       *   health:
+       *     properties:
+       *       status:
+       *         type: string
+       *         enum:
+       *          - "LIVE"
+       */
       /**
        * @swagger
        *
@@ -31,13 +40,13 @@ router.route('/health')
        *         required: true
        *         description: Unique Id for each request
        *       - in: header
-       *         name: Accept-Encoding
+       *         name: accept-encoding
        *         schema:
        *           type: string
        *         required: true
        *         description: application/gzip is allowed
        *       - in: header
-       *         name: Accept
+       *         name: accept
        *         schema:
        *           type: string
        *         required: true
@@ -45,6 +54,8 @@ router.route('/health')
        *     responses:
        *       200:
        *         description: Server is alive
+       *         schema:
+       *           $ref: "#/definitions/health"
        *         headers:
        *            x-correlation-Id:
        *                schema:

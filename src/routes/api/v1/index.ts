@@ -8,10 +8,10 @@ import user from './users'
 
 const router: Router = Router()
 
+router.use(validateCorrelationId)
 router.use(validateForwardedHeader)
 router.use(validateAccept)
 router.use(validateAcceptEncoding)
-router.use(validateCorrelationId)
 
 router.use('/', user)
 router.use('/', health)

@@ -2,6 +2,7 @@
   "name": "node_ts",
   "version": "1.0.0",
   "description": "",
+  "author": "Anshu <kumaranshu72@gmail.com>",
   "main": "dist/server.js",
   "scripts": {
     "lint": "./node_modules/.bin/tslint --project \".\"",
@@ -26,7 +27,6 @@
     "all": true
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
